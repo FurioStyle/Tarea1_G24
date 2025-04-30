@@ -2,6 +2,8 @@ import Bebidas.*;
 import Dulces.*;
 import Deposito.*;
 import Monedas.*;
+import Excepciones.*;
+
 
 public class Expendedor {
     private Deposito coca;
@@ -30,9 +32,9 @@ public class Expendedor {
 
     }
 
-    public Bebida comprarBebida(Moneda m, int x) {
+    public Bebida comprarBebida(Moneda m, int x) throws PagoIncorrectoException, NoHayProductoException{
         if (m == null){
-            return null;
+            throw new PagoIncorrectoException("Moneda nula: no se puede realizar el pago");
         }
         else{
             int valor = m.getValor();
@@ -43,9 +45,13 @@ public class Expendedor {
                 } else if (x == SPRITE) {
                     bebida = sprite.getBebida();
                 } else {
-                    bebida = null;
+                    int valorDevuelto = m.getValor();
+                    while (valorDevuelto >= 100) {
+                        monVu.addMoneda(new Moneda100());
+                        valorDevuelto -= 100;
+                    }
+                    throw new NoHayProductoException("Numero Invalido");
                 }
-
                 if (bebida != null) {
                     int vuelto = valor - precioBebida;
                     while (vuelto / 100 > 0) {
@@ -55,19 +61,21 @@ public class Expendedor {
                     return bebida;
                 }
                 else {
+                    int valorVuelto = m.getValor();
                     while (valor/100 > 0) {
                         monVu.addMoneda(new Moneda100());
                         valor -= 100;
                     }
-                    return null;
+                    throw new NoHayProductoException("No hay producto");
                 }
             }
             else {
+                int valorVuelto = m.getValor();
                 while (valor/100 > 0) {
                     monVu.addMoneda(new Moneda100());
                     valor -= 100;
                 }
-                return null;
+                throw new PagoIncorrectoException("No hay dinero suficiente");
             }
         }
     }
