@@ -8,11 +8,19 @@ public class Main {
         m = new Moneda1000();
         // Elija un articulo
         // 1 = CocaCola
+        c = new Comprador(m, 1);
+        System.out.println(c.queCompraste()+", "+c.cuantoVuelto());
         // 2 = Sprite
-        // 3 = Fanta
-        // 4 = Super8
-        // 5 = Snickers
         c = new Comprador(m, 2);
+        System.out.println(c.queCompraste()+", "+c.cuantoVuelto());
+        // 3 = Fanta
+        c = new Comprador(m, 3);
+        System.out.println(c.queCompraste()+", "+c.cuantoVuelto());
+        // 4 = Super8
+        c = new Comprador(m, 4);
+        System.out.println(c.queCompraste()+", "+c.cuantoVuelto());
+        // 5 = Snickers
+        c = new Comprador(m, 5);
         System.out.println(c.queCompraste()+", "+c.cuantoVuelto());
     }
 }
