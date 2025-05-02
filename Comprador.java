@@ -22,8 +22,13 @@ public class Comprador{
         return vuelto;
     }
 
-    public String queBebiste() {
-        return sonido;
+    public String queCompraste() {
+        if (sonido == null){
+            return "nada";
+        }
+        else {
+            return sonido;
+        }
     }
 }
 
