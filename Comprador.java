@@ -5,8 +5,9 @@ import Productos.ProductoEnum;
 public class Comprador{
     private String sonido;
     private int vuelto;
-
-    public Comprador(Moneda m, int cual, Expendedor exp){
+    private Expendedor exp = new Expendedor(6);
+    
+    public Comprador(Moneda m, int cual){
         Producto p = null;
         switch (cual){
             case 1:
