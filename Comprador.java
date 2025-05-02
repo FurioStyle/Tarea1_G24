@@ -1,3 +1,5 @@
+import Excepciones.NoHayProductoException;
+import Excepciones.PagoIncorrectoException;
 import Monedas.*;
 import Productos.Producto;
 import Productos.ProductoEnum;
@@ -6,7 +8,7 @@ public class Comprador{
     private String sonido;
     private int vuelto;
 
-    public Comprador(Moneda m, int cual){
+    public Comprador(Moneda m, int cual) throws NoHayProductoException, PagoIncorrectoException {
         Expendedor exp = new Expendedor(6);
         Producto p = null;
         switch (cual){
@@ -25,6 +27,8 @@ public class Comprador{
             case 5:
                 p = exp.comprarProducto(m, 5);
                 break;
+            default:
+                throw new NoHayProductoException("Numero Invalido");
         }
         if (p != null) {
             this.sonido = p.consumir();

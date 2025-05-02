@@ -51,7 +51,7 @@ public class Expendedor {
         }
         else{
             int valor = m.getValor();
-            Producto productoSeleccionado;
+            Producto productoSeleccionado = null;
             int precio = 0;
             switch (cual){
                 case 1:
@@ -74,8 +74,6 @@ public class Expendedor {
                     productoSeleccionado = snickers.getElemento();
                     precio = ProductoEnum.SNICKERS.getPrecio();
                     break;
-                default:
-                    throw new NoHayProductoException("Numero Invalido");
             }
             if (valor >= precio) {
                 if (productoSeleccionado != null) {
