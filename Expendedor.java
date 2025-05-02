@@ -44,35 +44,41 @@ public class Expendedor {
 
     }
 
-    public Producto comprarProducto(Moneda m, ProductoEnum tipo) {
+    public Producto comprarProducto(Moneda m, int cual) {
         if (m == null){
             return null;
         }
         else{
             int valor = m.getValor();
             Producto productoSeleccionado;
-            if (valor >= tipo.getPrecio()) {
-                if (tipo == ProductoEnum.COCA_COLA) {
+            int precio = 0;
+            switch (cual){
+                case 1:
                     productoSeleccionado = coca.getElemento();
-                }
-                else if (tipo == ProductoEnum.SPRITE) {
+                    precio = ProductoEnum.COCA_COLA.getPrecio();
+                    break;
+                case 2:
                     productoSeleccionado = sprite.getElemento();
-                }
-                else if(tipo == ProductoEnum.FANTA) {
+                    precio = ProductoEnum.SPRITE.getPrecio();
+                    break;
+                case 3:
                     productoSeleccionado = fanta.getElemento();
-                }
-                else if(tipo == ProductoEnum.SUPER8) {
+                    precio = ProductoEnum.FANTA.getPrecio();
+                    break;
+                case 4:
                     productoSeleccionado = super8.getElemento();
-                }
-                else if(tipo == ProductoEnum.SNICKERS) {
+                    precio = ProductoEnum.SUPER8.getPrecio();
+                    break;
+                case 5:
                     productoSeleccionado = snickers.getElemento();
-                }
-                else {
+                    precio = ProductoEnum.SNICKERS.getPrecio();
+                    break;
+                default:
                     productoSeleccionado = null;
-                }
-
+            }
+            if (valor >= precio) {
                 if (productoSeleccionado != null) {
-                    int vuelto = valor - tipo.getPrecio();
+                    int vuelto = valor - precio;
                     while (vuelto / 100 > 0) {
                         monedaVuelto.addElemento(new Moneda100());
                         vuelto -= 100;

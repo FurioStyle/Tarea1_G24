@@ -5,25 +5,25 @@ import Productos.ProductoEnum;
 public class Comprador{
     private String sonido;
     private int vuelto;
-    private Expendedor exp = new Expendedor(6);
-    
+
     public Comprador(Moneda m, int cual){
+        Expendedor exp = new Expendedor(6);
         Producto p = null;
         switch (cual){
             case 1:
-                p = exp.comprarProducto(m, ProductoEnum.COCA_COLA);
+                p = exp.comprarProducto(m, 1);
                 break;
             case 2:
-                p = exp.comprarProducto(m, ProductoEnum.SPRITE);
+                p = exp.comprarProducto(m, 2);
                 break;
             case 3:
-                p = exp.comprarProducto(m, ProductoEnum.FANTA);
+                p = exp.comprarProducto(m, 3);
                 break;
             case 4:
-                p = exp.comprarProducto(m, ProductoEnum.SUPER8);
+                p = exp.comprarProducto(m, 4);
                 break;
             case 5:
-                p = exp.comprarProducto(m, ProductoEnum.SNICKERS);
+                p = exp.comprarProducto(m, 5);
                 break;
         }
         if (p != null) {
