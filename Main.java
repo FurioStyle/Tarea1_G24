@@ -1,7 +1,5 @@
 import Monedas.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import Productos.ProductoEnum;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -9,8 +7,13 @@ public class Main {
         Moneda m = null;
         Comprador c = null;
         m = new Moneda1000();
-        ProductoEnum tipo = ProductoEnum.SNICKERS;
-        c = new Comprador(m,tipo,exp);
+        // Elija un articulo
+        // 1 = CocaCola
+        // 2 = Sprite
+        // 3 = Fanta
+        // 4 = Super8
+        // 5 = Snickers
+        c = new Comprador(m, 2 ,exp);
         System.out.println(c.queCompraste()+", "+c.cuantoVuelto());
     }
 }
