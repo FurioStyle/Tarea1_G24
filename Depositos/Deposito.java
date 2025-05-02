@@ -1,25 +1,32 @@
 package Depositos;
 
-import Productos.Bebida;
+import Monedas.Moneda100;
 import Productos.Producto;
 
-import java.lang.reflect.GenericArrayType;
 import java.util.ArrayList;
 
 public class Deposito<T> {
-    private ArrayList<T> productos;
+    private ArrayList<T> deposito;
 
     public Deposito() {
-        productos = new ArrayList<>();
+        deposito = new ArrayList<>();
     }
 
     public void addElemento(T b) {
-        productos.add(b);
+        deposito.add(b);
     }
 
     public Producto getElemento() {
-        if (!productos.isEmpty()) {
-            return (Producto) productos.remove(0);
+        if (!deposito.isEmpty()) {
+            return (Producto) deposito.remove(0);
+        } else {
+            return null;
+        }
+    }
+
+    public Moneda100 getVuelto(){
+        if (!deposito.isEmpty()) {
+            return (Moneda100) deposito.remove(0);
         } else {
             return null;
         }

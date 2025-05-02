@@ -6,7 +6,7 @@ public class Expendedor {
     private Deposito coca;
     private Deposito sprite;
     private Deposito fanta;
-    private DepositoM monVu;
+    private Deposito monedaVuelto;
     private Deposito super8;
     private Deposito snickers;
     public int numeroProducto;
@@ -27,7 +27,8 @@ public class Expendedor {
         for (int i = serieS; i < serieS + numeroProducto; i++) {
             sprite.addElemento(new Sprite(i));
         }
-        monVu = new DepositoM();
+        monedaVuelto = new Deposito();
+
         fanta = new Deposito();
         for (int i = serieF; i < serieF + numeroProducto; i++) {
             fanta.addElemento(new Fanta(i));
@@ -73,14 +74,14 @@ public class Expendedor {
                 if (productoSeleccionado != null) {
                     int vuelto = valor - tipo.getPrecio();
                     while (vuelto / 100 > 0) {
-                        monVu.addMoneda(new Moneda100());
+                        monedaVuelto.addElemento(new Moneda100());
                         vuelto -= 100;
                     }
                     return productoSeleccionado;
                 }
                 else {
                     while (valor/100 > 0) {
-                        monVu.addMoneda(new Moneda100());
+                        monedaVuelto.addElemento(new Moneda100());
                         valor -= 100;
                     }
                     return null;
@@ -88,7 +89,7 @@ public class Expendedor {
             }
             else {
                 while (valor/100 > 0) {
-                    monVu.addMoneda(new Moneda100());
+                    monedaVuelto.addElemento(new Moneda100());
                     valor -= 100;
                 }
                 return null;
@@ -97,7 +98,7 @@ public class Expendedor {
     }
 
     public Moneda getVuelto(){
-        return monVu.getMoneda();
+        return monedaVuelto.getVuelto();
     }
 }
 
