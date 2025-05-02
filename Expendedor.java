@@ -1,6 +1,7 @@
 import Productos.*;
 import Depositos.*;
 import Monedas.*;
+import Excepciones.*;
 
 public class Expendedor {
     private Deposito coca;
@@ -44,9 +45,9 @@ public class Expendedor {
 
     }
 
-    public Producto comprarProducto(Moneda m, int cual) {
+    public Producto comprarProducto(Moneda m, int cual) throws PagoIncorrectoException, NoHayProductoException   {
         if (m == null){
-            return null;
+            throw new PagoIncorrectoException("Moneda nula: no se puede realizar el pago");
         }
         else{
             int valor = m.getValor();
@@ -74,7 +75,7 @@ public class Expendedor {
                     precio = ProductoEnum.SNICKERS.getPrecio();
                     break;
                 default:
-                    productoSeleccionado = null;
+                    throw new NoHayProductoException("Numero Invalido");
             }
             if (valor >= precio) {
                 if (productoSeleccionado != null) {
@@ -90,7 +91,7 @@ public class Expendedor {
                         monedaVuelto.addElemento(new Moneda100());
                         valor -= 100;
                     }
-                    return null;
+                    throw new NoHayProductoException("No hay producto");
                 }
             }
             else {
@@ -98,7 +99,7 @@ public class Expendedor {
                     monedaVuelto.addElemento(new Moneda100());
                     valor -= 100;
                 }
-                return null;
+                throw new PagoIncorrectoException("No hay dinero suficiente");
             }
         }
     }
