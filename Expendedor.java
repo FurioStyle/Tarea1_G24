@@ -2,6 +2,11 @@ import Productos.*;
 import Depositos.*;
 import Monedas.*;
 import Excepciones.*;
+/**
+ * Clase que simula un expendedor de productos. Permite la compra de bebidas y snacks
+ * como CocaCola, Sprite, Fanta, Super8 y Snickers. Los productos están almacenados en depósitos
+ * y el expendedor procesa pagos y entrega vuelto en monedas.
+ */
 
 public class Expendedor {
     private Deposito coca;
@@ -11,7 +16,13 @@ public class Expendedor {
     private Deposito super8;
     private Deposito snickers;
     public int numeroProducto;
-
+    /**
+     * Constructor que inicializa el expendedor con una cantidad específica de productos en stock.
+     * Se crean depósitos con productos de tipo CocaCola, Sprite, Fanta, Super8 y Snickers,
+     * cada uno con un número determinado de unidades.
+     *
+     * @param cantidad La cantidad de productos que se añadirán a cada depósito.
+     */
     public Expendedor(int cantidad) {
         this.numeroProducto = cantidad;
         int serieC = 100;
@@ -44,6 +55,18 @@ public class Expendedor {
         }
 
     }
+    /**
+     * Método para comprar un producto del expendedor. Se verifica si la moneda es válida,
+     * si hay stock disponible del producto seleccionado y si el valor de la moneda es suficiente
+     * para la compra. Si todo es correcto, se devuelve el producto comprado y se da el vuelto.
+     *
+     * @param m La moneda utilizada para realizar la compra.
+     * @param cual El número del producto que se desea comprar:
+     *             1: CocaCola, 2: Sprite, 3: Fanta, 4: Super8, 5: Snickers.
+     * @return El producto comprado si el pago es válido y hay stock disponible.
+     * @throws PagoIncorrectoException Si el valor de la moneda no es suficiente para la compra.
+     * @throws NoHayProductoException Si no hay más unidades del producto seleccionado.
+     */
 
     public Producto comprarProducto(Moneda m, int cual) throws PagoIncorrectoException, NoHayProductoException   {
         if (m == null){
@@ -102,6 +125,11 @@ public class Expendedor {
         }
     }
 
+    /**
+     * Método para obtener el vuelto del expendedor.
+     *
+     * @return El vuelto en forma de monedas, si las hay.
+     */
     public Moneda getVuelto(){
         return monedaVuelto.getVuelto();
     }
